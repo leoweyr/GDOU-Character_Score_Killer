@@ -80,6 +80,11 @@ def importDataBasic():
                 return False
             else:
                 try:
+                    '''
+                    中歌院播音1212班长“顾客点了一份炒蛋，酒吧炸了”这句话立马激起我把判断用户导入是否是Excel表格通过后缀“.xlsx”来识别的伪判断改为读取文件的真判断
+                    if (dataBasic_file.endswith(".xlsx") == False):
+                        ...
+                    '''
                     excelBasic = excel(dataBasic_file, "Sheet1")
                 except:
                     g.msgbox("请导入Excel表格！", swName, "重新导入")
