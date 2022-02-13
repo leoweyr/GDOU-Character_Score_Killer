@@ -7,7 +7,7 @@ import webbrowser
 import shutil
 import random
 #
-version = "1.0.0"
+version = "1.0.1"
 swName = "广东海洋大学品行分统计杀手_v" + version
 #
 class excel:
@@ -143,7 +143,7 @@ def ac():
             ac_file.write("l2Ah5PEqxdNbaZtmeJWDi86FGCjnkYu1UIQTLsRv\n9xQYcVe56Dz0vGsLS3jWkryMIN4fEamn8X1pPhOA\nbfynRCNDuhBvXV6e7LP52pat0j134dOlKc9zoUZH\nWDSRL2G8XUripwM5VnE60zAq1Ihf7eBvl9JaZkso\n1xNiMBpQ7rjqP5wb9DLVIFoYy4su6cKJdUmOA2ET\ngepuh5i0aonMsUfJXwZz4A69NqOQTPyHGCr7ISdL\n9svLRldfiyXQrtHWTVZ078k6Ppb5FmgU14KMNDcC\nTpizKn5dAvrQFDYbymIGec8UaMtlZ6Ej10Pu3RSL\nQYGIvMqEjKg3PVt2s0p9BCT8Rx764ZnewXDzJmUd\naR9oxVrTJIU8mGls7kcPuDXF41hvEYzAW36HKeLB")
             break
 def ac_ban():
-    choice = g.ccbox("试用次数用完啦！", swName, ("激活软件", "关闭软件"))
+    choice = g.ccbox("试用次数用完啦！", swName, ("免费激活软件", "关闭软件"))
     if (choice == False or choice == None):
         os._exit(0)
     else:
