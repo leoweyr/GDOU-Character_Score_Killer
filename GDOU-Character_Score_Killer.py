@@ -70,9 +70,9 @@ class File:
         self.FileOpen.close()
     def ReadAC(self):
         self.FileOpen = open(self.FilePath, "r")
-        fileconcent = self.FileOpen.read()
-        self.fileOpen.close()
-        return fileconcent
+        fileContent = self.FileOpen.read()
+        self.FileOpen.close()
+        return fileContent
 
 def ImportDataBasic():
     g.msgbox("接下来请导入含有你班级同学基本信息的Excel表格\n该Excel表格严格要求如图的格式依次写入班级同学们的基本信息", swName, "好哒", "../img/help1.gif")
@@ -321,7 +321,7 @@ while True:
                                     excelFinal.Save(excelPath3)
                                     timeNow = datetime.datetime.now()
                                     excelPath4 = os.path.dirname(
-                                        excelPath3) + "\\【" + className + "】" + str(timeNow.month) + "月份品行分统计表"
+                                        excelPath3) + "\\【" + className + "】" + str(timeNow.month) + "月份品行分统计表.xlsx"
                                     os.rename(excelPath3, excelPath4)
                                     className_file.ReadClose()
                                     ac_file = File(
