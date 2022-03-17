@@ -8,7 +8,7 @@ import shutil
 import datetime
 
 #
-version = "1.1.0"
+version = "1.1.1"
 swName = "广东海洋大学品行分统计杀手_v" + version
 #
 class Excel:
@@ -293,7 +293,7 @@ while True:
                                                             dataEventClass[
                                                                 studentEventClass][
                                                                 3])
-                                                    studentEventScore += dataEventClass[studentEventClass][3]
+                                                    studentEventScore += float(dataEventClass[studentEventClass][3])
                                             dataBasic[studentList][3] = studentEvent
                                             dataBasic[studentList][4] = studentEventScore
                                             dataBasic[rowList] = dataBasic[studentList]
