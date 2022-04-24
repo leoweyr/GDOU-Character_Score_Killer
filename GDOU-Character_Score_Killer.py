@@ -295,6 +295,8 @@ while True:
                                             if (dataEventClass[studentEventClass][1] == studentName):
                                                 numAdd_studentEvent += 1
                                         if (numAdd_studentEvent == 0):
+                                            dataBasic[studentList][3] = ""
+                                            dataBasic[studentList][4] = studentEventScore
                                             dataBasic_delete[i] = rowList
                                             i += 1
                                         else:
@@ -306,14 +308,7 @@ while True:
                                                                                    dataEventClass[studentEventClass][2],
                                                                                    dataEventClass[studentEventClass][3])
                                                     else:
-                                                        studentEvent = studentEvent + "\n" + EventFormat(
-                                                            num_studentEvent,
-                                                            dataEventClass[
-                                                                studentEventClass][
-                                                                2],
-                                                            dataEventClass[
-                                                                studentEventClass][
-                                                                3])
+                                                        studentEvent = studentEvent + "\n" + EventFormat(num_studentEvent,dataEventClass[studentEventClass][2],dataEventClass[studentEventClass][3])
                                                     studentEventScore += float(dataEventClass[studentEventClass][3])
                                             dataBasic[studentList][3] = studentEvent
                                             dataBasic[studentList][4] = studentEventScore
