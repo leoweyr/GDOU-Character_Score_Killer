@@ -8,7 +8,7 @@ import shutil
 import datetime
 
 #
-version = "1.1.1"
+version = "1.2.0"
 swName = "广东海洋大学品行分统计杀手_v" + version
 #
 class Excel:
@@ -109,6 +109,20 @@ def ImportClassName():
             className_file.Write(className)
             break
 
+def SetShowDataInclude():
+    while True:
+        showDataInclude = g.choicebox("最终生成表格统计数据包含的学生范围",swName,("包含全部同学（不管Ta是否有品行分）","仅包含有品行分的同学"))
+        if(showDataInclude == None):
+            g.msgbox("请设定一个范围！",swName,"好吧")
+        elif(showDataInclude == '包含全部同学（不管Ta是否有品行分）'):
+            showDataInclude_file = File("../config/showDataInclude.properties")
+            showDataInclude_file.Write("0")
+            break
+        elif(showDataInclude == '仅包含有品行分的同学'):
+            showDataInclude_file = File("../config/showDataInclude.properties")
+            showDataInclude_file.Write("1")
+            break
+
 def EventFormat(id, event, score):
     global space
     count_en = count_dg = count_zh = count_puF = count_puH = 0
@@ -189,6 +203,7 @@ if (isini_file.Cheak() == False):
     g.msgbox("接下来开始刚开始使用本软件的一些设置工作",swName,"开始吧")
     ImportClassName()
     ImportDataBasic()
+    SetShowDataInclude()
     g.msgbox("一切初始化工作已完成！",swName,"开始正式使用本软件")
     isini_file.Write("1")
 #
@@ -205,6 +220,7 @@ while True:
         while True:
             className_file = File("../config/className.properties")
             dataBasic_file = File("../config/classBasicData.xlsx")
+            showDataInclude_file = File("../config/showDataInclude.properties")
             if (className_file.Cheak() == False):
                 g.msgbox("班级信息配置文件丢失！", swName, "重新输入")
                 ImportClassName()
@@ -212,8 +228,13 @@ while True:
                 g.msgbox("含有班级同学基本信息的Excel表格不存在！", swName, "重新导入")
                 if (ImportDataBasic() == False):
                     break
+            elif (showDataInclude_file.Cheak() == False):
+                g.msgbox("最终生成表格统计数据包含的学生范围配置文件丢失！", swName, "重新设置")
+                SetShowDataInclude()
             className_file = File("../config/className.properties")
             className = className_file.Read()
+            showDataInclude_file = File("../config/showDataInclude.properties")
+            showDataInclude = showDataInclude_file.Read()
             excelPath1 = "../config/classBasicData.xlsx"
             g.msgbox("接下来请导入学院品行分汇总Excel表格\n该Excel表格类似如图", swName, "好哒", "../img/help2.gif")
             while True:
@@ -298,17 +319,18 @@ while True:
                                             dataBasic[studentList][4] = studentEventScore
                                             dataBasic[rowList] = dataBasic[studentList]
                                         rowList += 1
-                                    # 删除无品行分的学生
-                                    for x in dataBasic_delete:
-                                        dataBasic.pop(dataBasic_delete[x])
-                                    # 重新排序
-                                    dataBasic_backup = {}
-                                    i = 0
-                                    for x in dataBasic:
-                                        dataBasic_backup[i] = dataBasic[x]
-                                        i += 1
-                                    dataBasic = dataBasic_backup
-                                    #
+                                    if(showDataInclude == "1"):
+                                        # 删除无品行分的学生
+                                        for x in dataBasic_delete:
+                                            dataBasic.pop(dataBasic_delete[x])
+                                        # 重新排序
+                                        dataBasic_backup = {}
+                                        i = 0
+                                        for x in dataBasic:
+                                            dataBasic_backup[i] = dataBasic[x]
+                                            i += 1
+                                        dataBasic = dataBasic_backup
+                                        #
                                     row = 0
                                     for x in dataBasic:
                                         excelFinal.InsertNum(row + 6, 2, dataBasic[x][0])
@@ -324,6 +346,7 @@ while True:
                                         excelPath3) + "\\【" + className + "】" + str(timeNow.month) + "月份品行分统计表.xlsx"
                                     os.rename(excelPath3, excelPath4)
                                     className_file.ReadClose()
+                                    showDataInclude_file.ReadClose()
                                     ac_file = File(
                                         "C://Users//Public//Documents//system_//DDS9QHcXbpdMjNzyOxRI1sKv3ugLmqe2JVnZ.properties")
                                     if (ac_file.Cheak() == False):
@@ -338,11 +361,13 @@ while True:
             break
     elif (workFn == '设置'):
         while True:
-            workFn_setting = g.choicebox("设置",swName,("重新输入班级","重新导入含有班级同学基本信息的Excel表格"))
+            workFn_setting = g.choicebox("设置",swName,("重新输入班级","重新导入含有班级同学基本信息的Excel表格","重新设置最终生成表格统计数据包含的学生范围"))
             if (workFn_setting == '重新输入班级'):
                 ImportClassName()
             elif (workFn_setting == '重新导入含有班级同学基本信息的Excel表格'):
                 ImportDataBasic()
+            elif(workFn_setting == '重新设置最终生成表格统计数据包含的学生范围'):
+                SetShowDataInclude()
             else:
                 break
     elif (workFn == '反馈BUG'):
