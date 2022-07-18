@@ -1,6 +1,6 @@
 # GDOU-Character_Score_Killer - 广东海洋大学品行分统计杀手
 
-![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/leoweyr/GDOU-Character_Score_Killer?include_prereleases)![GitHub downloads](https://img.shields.io/github/downloads/leoweyr/GDOU-Character_Score_Killer/total?color=%2393C419)
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/leoweyr/GDOU-Character_Score_Killer?include_prereleases) ![GitHub downloads](https://img.shields.io/github/downloads/leoweyr/GDOU-Character_Score_Killer/total?color=%2393C419)
 
 ![avatar](img/icon.gif)
 
