@@ -8,7 +8,7 @@ import shutil
 import datetime
 
 #
-version = "1.2.1"
+version = "1.2.2"
 swName = "广东海洋大学品行分统计杀手_v" + version
 #
 class Excel:
