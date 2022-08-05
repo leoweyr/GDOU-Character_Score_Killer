@@ -7,7 +7,7 @@
       <excludeFolder url="file://$MODULE_DIR$/Release" />
       <excludeFolder url="file://$MODULE_DIR$/更新日志" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.7 (Default)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.7 (GDOU-Character_Score_Killer) " jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

@@ -138,7 +138,10 @@ def EventFormat(id, event, score):
                 count_puF += 1
             else:
                 count_puH += 1
-    num_space = 36 - (count_en + count_dg + count_puH + ((count_zh + count_puF) * 2))
+    eventStrCount = (count_en + count_dg + count_puH + ((count_zh + count_puF) * 2))
+    num_space = 36 - eventStrCount
+    while (num_space < 0):
+        num_space += 36
     i = 0
     while (i < num_space):
         if (i == 0):
